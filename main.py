@@ -32,6 +32,8 @@ def self_check(word: str) -> None:
     """Fail loudly unless the entry passes the competition's gate."""
     if not word:
         raise ValueError("entry is empty")
+    if not (word.isascii() and word.isalnum()):
+        raise ValueError("entry must be plain ASCII letters/digits only (no hidden or non-ASCII characters)")
     if len(word) > MAX_CHARS:
         raise ValueError(f"entry is {len(word)} chars, gate allows at most {MAX_CHARS}")
     if len(word.split()) != 1:
